@@ -23,13 +23,13 @@ while True:
     client.publish('fruits_hum_val', str(p12.value()))
     client.publish('fruits_fan_value', str(p14.value()))
 
-    if d.humidity() < 94:
+    if d.humidity() < 98:
         p12.off()
     elif d.humidity() > 98:
         p12.on()
 
     print(machine.RTC().datetime())
-    if machine.RTC().datetime()[5] > 58:
+    if machine.RTC().datetime()[5] > 57:
         p14.off()
     else:
         p14.on()

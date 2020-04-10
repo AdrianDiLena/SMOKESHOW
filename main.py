@@ -16,17 +16,17 @@ client = MQTTClient('124748937892378493027345', '192.168.2.67')
 client.connect()
 
 while True:
-    d.measure()
-    utime.sleep(3)
-    client.publish('fruits_temp', str(d.temperature()))
-    client.publish('fruits_hum', str(d.humidity()))
+    d.measure() # measure temp + hum
+    utime.sleep(3) # wait 3 seconds, must be at least 750 ms for DHT22 sensor
+    client.publish('fruits_temp', str(d.temperature())) # publishes temp to mqtt broker
+    client.publish('fruits_hum', str(d.humidity())) # publishes hum to mqtt broker
 
 
-    if d.humidity() < 98:
+    if d.humidity() < 98: # if less than 98% humidity, activate humidifier.
         p12.off()
-    elif d.humidity() > 98:
+    elif d.humidity() > 98: # until it is over 98% humidity. 
         p12.on()
-    elif machine.RTC().datetime()[5] < 10:
+    elif machine.RTC().datetime()[5] < 10: #First ten minutes of every hour activates humidifier.
         p12.off()
 
     print(machine.RTC().datetime())

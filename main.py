@@ -17,18 +17,20 @@ client.connect()
 
 while True:
     d.measure()
-    utime.sleep(1)
+    utime.sleep(3)
     client.publish('fruits_temp', str(d.temperature()))
     client.publish('fruits_hum', str(d.humidity()))
-    client.publish('fruits_hum_val', str(p12.value()))
-    client.publish('fruits_fan_value', str(p14.value()))
+
 
     if d.humidity() < 98:
         p12.off()
     elif d.humidity() > 98:
         p12.on()
+    elif machine.RTC().datetime()[5] < 10:
+        p12.off()
 
     print(machine.RTC().datetime())
+
     if machine.RTC().datetime()[5] > 57:
         p14.off()
     else:
@@ -37,3 +39,6 @@ while True:
         p13.off()
     else:
         p13.on()
+    if machine.RTC().datetime()[5] < 10:
+        p12.off()
+        

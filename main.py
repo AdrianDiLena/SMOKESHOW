@@ -39,6 +39,6 @@ while True:
         p13.off()
     else:
         p13.on()
-    if machine.RTC().datetime()[5] < 10:
+    if machine.RTC().datetime()[5] < 12:
         p12.off()
         

@@ -2,7 +2,8 @@
 
 Operation Smoke Show
 
-This is a simple code for automating a fruiting chamber for mycological grow projects. 
+This is a simple code automating mycology projects. 
+Using NodeMCU ESP8266 and Micropython 
 
 - dht22 sensor is used to measure temperature and relative humidity
 - humidifier is programmed to turn on if relative humidity falls below a certain threshold

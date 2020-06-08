@@ -1,0 +1,713 @@
+[
+    {
+        "id": "de190ce4.48b3f8",
+        "type": "tab",
+        "label": "SMOKESHOW",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "82b7d33b.ebf34",
+        "type": "mqtt in",
+        "z": "de190ce4.48b3f8",
+        "name": "temp",
+        "topic": "fruits_temp",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b6712bff.c9bb7",
+        "x": 90,
+        "y": 185,
+        "wires": [
+            [
+                "ee7e0199.2d4d78",
+                "c11616de.562828"
+            ]
+        ]
+    },
+    {
+        "id": "538705fa.f04164",
+        "type": "mqtt in",
+        "z": "de190ce4.48b3f8",
+        "name": "hum",
+        "topic": "fruits_hum",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b6712bff.c9bb7",
+        "x": 90,
+        "y": 232,
+        "wires": [
+            [
+                "c90fb104.6baf78",
+                "a75540c1.1b1a3"
+            ]
+        ]
+    },
+    {
+        "id": "ee7e0199.2d4d78",
+        "type": "ui_chart",
+        "z": "de190ce4.48b3f8",
+        "name": "Fruits Temp",
+        "group": "bdae6336.a4b068",
+        "order": 2,
+        "width": 6,
+        "height": 6,
+        "label": "Termperature *C",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "19",
+        "ymax": "30",
+        "removeOlder": 1,
+        "removeOlderPoints": "50",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c90fb104.6baf78",
+        "type": "ui_gauge",
+        "z": "de190ce4.48b3f8",
+        "name": "Relative Humidity",
+        "group": "ba660da4.155d08",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Relative Humidity %",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 310,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "a75540c1.1b1a3",
+        "type": "ui_chart",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "group": "ba660da4.155d08",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Humidity",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 281,
+        "y": 276,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c11616de.562828",
+        "type": "ui_gauge",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "group": "bdae6336.a4b068",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature *C",
+        "label": "Celsius",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "35",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 300,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "d2bb61c8.4cbd48",
+        "type": "comment",
+        "z": "de190ce4.48b3f8",
+        "name": "SENSORS",
+        "info": "",
+        "x": 200,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7fe41330.9206fc",
+        "type": "comment",
+        "z": "de190ce4.48b3f8",
+        "name": "MANUAL SWITCHES",
+        "info": "",
+        "x": 720,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "fe18cf2e.8244a",
+        "type": "debug",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 882,
+        "y": 353,
+        "wires": []
+    },
+    {
+        "id": "60819548.8e088c",
+        "type": "mqtt out",
+        "z": "de190ce4.48b3f8",
+        "name": "Fan On",
+        "topic": "SMOKESHOW/relays/fan",
+        "qos": "2",
+        "retain": "",
+        "broker": "b6712bff.c9bb7",
+        "x": 891,
+        "y": 312,
+        "wires": []
+    },
+    {
+        "id": "8508bd4.a9c4dc",
+        "type": "ui_button",
+        "z": "de190ce4.48b3f8",
+        "name": "Fan On",
+        "group": "d48997e3.ef74e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Fan On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "on",
+        "payloadType": "str",
+        "topic": "SMOKESHOW/relays/fan",
+        "x": 523,
+        "y": 314,
+        "wires": [
+            [
+                "fe18cf2e.8244a",
+                "60819548.8e088c"
+            ]
+        ]
+    },
+    {
+        "id": "dc5ae014.7c067",
+        "type": "inject",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "topic": "SMOKESHOW/relays/fan",
+        "payload": "on",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 580,
+        "y": 354,
+        "wires": [
+            [
+                "fe18cf2e.8244a",
+                "60819548.8e088c"
+            ]
+        ]
+    },
+    {
+        "id": "ef3a611.9333d2",
+        "type": "debug",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 881,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c862e779.a11dc",
+        "type": "mqtt out",
+        "z": "de190ce4.48b3f8",
+        "name": "LIght On",
+        "topic": "SMOKESHOW/relays/light",
+        "qos": "2",
+        "retain": "",
+        "broker": "b6712bff.c9bb7",
+        "x": 890,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "bdb6db3d.9c326",
+        "type": "ui_button",
+        "z": "de190ce4.48b3f8",
+        "name": "Light On",
+        "group": "d48997e3.ef74e",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Light On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "on",
+        "payloadType": "str",
+        "topic": "SMOKESHOW/relays/light",
+        "x": 520,
+        "y": 160,
+        "wires": [
+            [
+                "ef3a611.9333d2",
+                "c862e779.a11dc"
+            ]
+        ]
+    },
+    {
+        "id": "b89879b5.09ad3",
+        "type": "inject",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "topic": "SMOKESHOW/relays/light",
+        "payload": "on",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 580,
+        "y": 197,
+        "wires": [
+            [
+                "ef3a611.9333d2",
+                "c862e779.a11dc"
+            ]
+        ]
+    },
+    {
+        "id": "e9da9f3e.def738",
+        "type": "debug",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 881,
+        "y": 509,
+        "wires": []
+    },
+    {
+        "id": "5f2ab963.109b38",
+        "type": "mqtt out",
+        "z": "de190ce4.48b3f8",
+        "name": "Humidifier On",
+        "topic": "SMOKESHOW/relays/humidifier",
+        "qos": "2",
+        "retain": "",
+        "broker": "b6712bff.c9bb7",
+        "x": 870,
+        "y": 469,
+        "wires": []
+    },
+    {
+        "id": "17fab35e.d58df5",
+        "type": "ui_button",
+        "z": "de190ce4.48b3f8",
+        "name": "Hum On",
+        "group": "d48997e3.ef74e",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Hum On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "on",
+        "payloadType": "str",
+        "topic": "SMOKESHOW/relays/humidifier",
+        "x": 522,
+        "y": 471,
+        "wires": [
+            [
+                "e9da9f3e.def738",
+                "5f2ab963.109b38"
+            ]
+        ]
+    },
+    {
+        "id": "e8a598a4.e27df",
+        "type": "inject",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "topic": "SMOKESHOW/relays/humidifier",
+        "payload": "on",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 599,
+        "y": 510,
+        "wires": [
+            [
+                "e9da9f3e.def738",
+                "5f2ab963.109b38"
+            ]
+        ]
+    },
+    {
+        "id": "8dec1fef.4e9bb",
+        "type": "debug",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 881,
+        "y": 432,
+        "wires": []
+    },
+    {
+        "id": "d12d17fa.8eeac8",
+        "type": "mqtt out",
+        "z": "de190ce4.48b3f8",
+        "name": "Fan Off",
+        "topic": "SMOKESHOW/relays/fan",
+        "qos": "2",
+        "retain": "",
+        "broker": "b6712bff.c9bb7",
+        "x": 890,
+        "y": 392,
+        "wires": []
+    },
+    {
+        "id": "189b924c.d25bae",
+        "type": "ui_button",
+        "z": "de190ce4.48b3f8",
+        "name": "Fan Off",
+        "group": "d48997e3.ef74e",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Fan Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "off",
+        "payloadType": "str",
+        "topic": "SMOKESHOW/relays/fan",
+        "x": 522,
+        "y": 394,
+        "wires": [
+            [
+                "8dec1fef.4e9bb",
+                "d12d17fa.8eeac8"
+            ]
+        ]
+    },
+    {
+        "id": "43023ce8.24f8bc",
+        "type": "inject",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "topic": "SMOKESHOW/relays/fan",
+        "payload": "off",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 579,
+        "y": 433,
+        "wires": [
+            [
+                "8dec1fef.4e9bb",
+                "d12d17fa.8eeac8"
+            ]
+        ]
+    },
+    {
+        "id": "6c7e01e9.d354b",
+        "type": "debug",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 882,
+        "y": 274,
+        "wires": []
+    },
+    {
+        "id": "ada983e1.e9eab",
+        "type": "mqtt out",
+        "z": "de190ce4.48b3f8",
+        "name": "LIght Off",
+        "topic": "SMOKESHOW/relays/light",
+        "qos": "2",
+        "retain": "",
+        "broker": "b6712bff.c9bb7",
+        "x": 891,
+        "y": 234,
+        "wires": []
+    },
+    {
+        "id": "46d6abdc.e97edc",
+        "type": "ui_button",
+        "z": "de190ce4.48b3f8",
+        "name": "Light Off",
+        "group": "d48997e3.ef74e",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Light Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "off",
+        "payloadType": "str",
+        "topic": "SMOKESHOW/relays/light",
+        "x": 521,
+        "y": 234,
+        "wires": [
+            [
+                "6c7e01e9.d354b",
+                "ada983e1.e9eab"
+            ]
+        ]
+    },
+    {
+        "id": "aa30a705.7864f",
+        "type": "inject",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "topic": "SMOKESHOW/relays/light",
+        "payload": "off",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 581,
+        "y": 271,
+        "wires": [
+            [
+                "6c7e01e9.d354b",
+                "ada983e1.e9eab"
+            ]
+        ]
+    },
+    {
+        "id": "73557b85.ce1674",
+        "type": "debug",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 878,
+        "y": 587,
+        "wires": []
+    },
+    {
+        "id": "de55259f.959a98",
+        "type": "mqtt out",
+        "z": "de190ce4.48b3f8",
+        "name": "Humidifier Off",
+        "topic": "SMOKESHOW/relays/humidifier",
+        "qos": "2",
+        "retain": "",
+        "broker": "b6712bff.c9bb7",
+        "x": 870,
+        "y": 547,
+        "wires": []
+    },
+    {
+        "id": "665f22cd.53c1e4",
+        "type": "ui_button",
+        "z": "de190ce4.48b3f8",
+        "name": "Hum Off",
+        "group": "d48997e3.ef74e",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Hum Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "off",
+        "payloadType": "str",
+        "topic": "SMOKESHOW/relays/humidifier",
+        "x": 519,
+        "y": 549,
+        "wires": [
+            [
+                "73557b85.ce1674",
+                "de55259f.959a98"
+            ]
+        ]
+    },
+    {
+        "id": "76270f01.91a2d",
+        "type": "inject",
+        "z": "de190ce4.48b3f8",
+        "name": "",
+        "topic": "SMOKESHOW/relays/humidifier",
+        "payload": "off",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 596,
+        "y": 588,
+        "wires": [
+            [
+                "73557b85.ce1674",
+                "de55259f.959a98"
+            ]
+        ]
+    },
+    {
+        "id": "b6712bff.c9bb7",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "localhost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "bdae6336.a4b068",
+        "type": "ui_group",
+        "z": "",
+        "name": "Temperature",
+        "tab": "c13abf1a.e44c2",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ba660da4.155d08",
+        "type": "ui_group",
+        "z": "",
+        "name": "Humidity",
+        "tab": "c13abf1a.e44c2",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "d48997e3.ef74e",
+        "type": "ui_group",
+        "z": "",
+        "name": "Switches",
+        "tab": "c13abf1a.e44c2",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "c13abf1a.e44c2",
+        "type": "ui_tab",
+        "z": "",
+        "name": "SMOKESHOW",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]

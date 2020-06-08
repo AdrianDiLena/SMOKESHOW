@@ -11,12 +11,6 @@ gc.collect()
 
 ssid = 'VIRGIN930'
 password = '6AF7AD59'
-mqtt_server = '192.168.2.67'
-#EXAMPLE IP ADDRESS
-#mqtt_server = '192.168.1.144'
-client_id = '124312341234'
-topic_sub = b'SMOKESHOW/relays/#'
-
 
 station = network.WLAN(network.STA_IF)
 

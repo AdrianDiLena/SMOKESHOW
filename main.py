@@ -2,28 +2,34 @@ from umqtt.robust import MQTTClient
 import dht
 import machine
 import utime
-import ntptime
 import webrepl
+import ntptime
 
-webrepl.start()
 ntptime.settime()
 
-builtinLED = machine.Pin(2, machine.Pin.OUT)
-builtinLED.on()
+webrepl.start()
 
-p12 = machine.Pin(12, machine.Pin.OUT) # relay 1 - humidifier
-p5 = machine.Pin(5, machine.Pin.OUT) # relay - 4 humidifier fan
-p13 = machine.Pin(13, machine.Pin.OUT) # relay 3 - led
-p14 = machine.Pin(14, machine.Pin.OUT) # relay 2 - fan
+client_id = '12345'
+mqtt_server = '192.168.2.67'
+topic_sub = b'SMOKESHOW/relays/#'
 
-pins = [p12, p5, p13, p14]
-for i in pins[:]:
-    i.on()
+print('\n\nWelcome to Operation SMOKESHOW\nVersion Delta - 6/8/2020\nThreat Level: Midnight\n')
+
+client = MQTTClient(client_id, mqtt_server)
+client.connect()
 
 d = dht.DHT22(machine.Pin(4, machine.Pin.IN, machine.Pin.PULL_UP))
 
-client = MQTTClient('124748937892378493027345', '192.168.2.67')
-client.connect()
+led = machine.Pin(2, machine.Pin.OUT)
+
+p12 = machine.Pin(12, machine.Pin.OUT) # relay 1 - fan
+p5 = machine.Pin(5, machine.Pin.OUT) # relay - 4 humidifier fan
+p13 = machine.Pin(13, machine.Pin.OUT) # relay 3 - led
+p14 = machine.Pin(14, machine.Pin.OUT) # relay 2 - humidifier
+
+pins = [p12, p5, p13, p14, led]
+for i in pins[:]:
+    i.on()
 
 def sub_cb(topic, msg):
     print((topic, msg))
@@ -32,9 +38,15 @@ def sub_cb(topic, msg):
     elif topic == b'SMOKESHOW/relays/light' and msg == b'off':
         p13.on()
     if topic == b'SMOKESHOW/relays/fan' and msg == b'on':
-        p14.off()
+        p12.off()
     elif topic == b'SMOKESHOW/relays/fan' and msg == b'off':
+        p12.on()
+    if topic == b'SMOKESHOW/relays/humidifier' and msg == b'on':
+        p14.off()
+        p5.off()
+    elif topic == b'SMOKESHOW/relays/humidifier' and msg == b'off':
         p14.on()
+        p5.on()
 
 
 def connect_and_subscribe():
@@ -57,30 +69,31 @@ except OSError as e:
     restart_and_reconnect()
 
 while True:
-    utime.sleep(2) # wait 5 seconds, must be at least 750 ms for DHT22 sensor
+    led.off()
+    utime.sleep_ms(50)
+    led.on()
+    utime.sleep_ms(950) # wait 2 seconds, must be at least 750 ms for DHT22 sensor
     d.measure() # measure temp + hum
     client.publish('fruits_temp', str(d.temperature())) # publishes temp to mqtt broker
     client.publish('fruits_hum', str(d.humidity())) # publishes hum to mqtt broker
     
-    # Humidifier turns on fist 9 minutes of each hour or if under 98% humidity.
+    # Humidifier turns on fist 4 minutes of each hour or if under 98% humidity.
     if d.humidity() < 98:
-        p12.off()
-        p5.off()
-    elif machine.RTC().datetime()[5] < 4:
-        p12.off()
-        p5.off()
-    else:
-        p12.on()
-        p5.on()
-
-    # Fan turns on for the last 3 minutes of every hour.
-    if machine.RTC().datetime()[5] > 57:
         p14.off()
+        p5.off()
+    elif utime.localtime()[4] < 2:
+        p14.off()
+        p5.off()
     else:
         p14.on()
-    
-    # LED turns on for the first 4 minutes of every hour.
-    if machine.RTC().datetime()[5] < 5: 
+        p5.on()
+    # Fan turns on for the last 2 minutes of every hour.
+    if utime.localtime()[4] > 57: 
+        p12.off()
+    else:
+        p12.on()
+    # LED turns on for the first 5 minutes of every hour.
+    if utime.localtime()[4] < 5: 
         p13.off()
     else:
         p13.on()
@@ -93,27 +106,24 @@ while True:
     print('Temperature:      ' + str(d.temperature()) + ' C')
 
     if p12.value() == 0:
-        print('Humidifier        ON')
-        client.publish('SMOKESHOW/machines/humidifer', 'ON') # publishes hum to mqtt broker
-    else:
-        print('Humidifier        OFF')
-        client.publish('SMOKESHOW/machines/humidifer', 'OFF')
-    if p13.value() == 0:
-        print('Lights            ON')
-        client.publish('SMOKESHOW/machines/light', 'ON')
-    else:
-        print('Lights            OFF')
-        client.publish('SMOKESHOW/machines/light', 'OFF')
-    if p14.value() == 0:
         print('Fan               ON')
-        client.publish('SMOKESHOW/machines/fan', 'ON')
     else:
         print('Fan               OFF')
-        client.publish('SMOKESHOW/machines/light', 'OFF')
+    if p13.value() == 0:
+        print('Lights            ON')
+    else:
+        print('Lights            OFF')
+    if p14.value() == 0:
+        print('Humidifier        ON')
+    else:
+        print('Humidifier        OFF')
     if p5.value() == 0:
         print('Humidifier Fan    ON')
-        client.publish('SMOKESHOW/machines/hfan', 'ON')
     else:
         print('Humidifier Fan    OFF')
-        client.publish('SMOKESHOW/machines/hlight', 'OFF')
-    print('..................................')        
+    print('..................................')
+
+    try:
+        client.check_msg()
+    except OSError as e:
+        restart_and_reconnect()

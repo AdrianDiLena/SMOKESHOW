@@ -84,16 +84,23 @@ while True:
     elif utime.localtime()[4] < 2:
         p14.off()
         p5.off()
+    elif topic == b'SMOKESHOW/relays/humidifier' and msg == b'on':
+        p14.off()
+        p5.off()
     else:
         p14.on()
         p5.on()
     # Fan turns on for the last 2 minutes of every hour.
     if utime.localtime()[4] > 57: 
         p12.off()
+    elif topic == b'SMOKESHOW/relays/fan' and msg == b'on':
+        p12.off()
     else:
         p12.on()
     # LED turns on for the first 5 minutes of every hour.
     if utime.localtime()[4] < 5: 
+        p13.off()
+    elif topic == b'SMOKESHOW/relays/light' and msg == b'on':
         p13.off()
     else:
         p13.on()
